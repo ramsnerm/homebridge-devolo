@@ -61,6 +61,9 @@ var HBDevoloCentralUnit = (function () {
             //console.log(JSON.stringify(devices, null, 4));
             for (var i = 0; i < devices.length; i++) {
                 var d = null;
+                
+                if (self.config.deviceBlacklist && self._isInWhitelist(devices[i].name, self.config.deviceBlacklist)) continue;
+
                 if (devices[i].constructor.name == DevoloDevice_1.SwitchMeterDevice.name) {
                     d = new HBDevoloSwitchMeterDevice_1.HBDevoloSwitchMeterDevice(self.log, self.dAPI, devices[i]);
                 }
